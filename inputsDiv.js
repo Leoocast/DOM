@@ -1,6 +1,7 @@
 export function validateByIdDiv(div){
 
-    const fn = (input, flag) => {
+    const fn = (input) => {
+        let flag = true
         switch (input.type) {
             case 'text':
             case 'number':
@@ -15,7 +16,6 @@ export function validateByIdDiv(div){
                 flag = !(input.files.length < 1) 
                 break
         }
-
         return flag
     }
 
@@ -43,12 +43,9 @@ export function pipeDiv(div, fn, returns = false){
     
     const inputs  = div.querySelectorAll('input, select')
 
-    let flag = true
-
     for (const input of inputs) {
         if (returns) {
-            const result = fn(input, flag) 
-            if(!result) return false
+            if(!fn(input)) return false
         } else
             fn(input)
     }
