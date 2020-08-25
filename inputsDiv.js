@@ -1,44 +1,51 @@
-export function validateByIdDiv(div){
+export function validateInputsDiv(divs){
 
-    const fn = (input) => {
-        let flag = true
-        switch (input.type) {
-            case 'text':
-            case 'number':
-            case 'select-one':
-                flag = !(input.value === '' || input.value === '0')
-                break
-            case 'radio':
-            case 'checkbox':
-                flag = input.checked
-                break
-            case 'file':
-                flag = !(input.files.length < 1) 
-                break
+    if (divs instanceof Array) {
+        for (const div of divs) {
+            const result = validateInputsDiv(div)
+    
+            if(!result) return result
+        } 
+        return true
+    } else {
+        const fn = (input) => {
+            let flag = true
+            switch (input.type) {
+                case 'text':
+                case 'number':
+                case 'select-one':
+                    flag = !(input.value === '' || input.value === '0')
+                    break
+                case 'radio':
+                case 'checkbox':
+                    flag = input.checked
+                    break
+                case 'file':
+                    flag = !(input.files.length < 1) 
+                    break
+            }
+            return flag
         }
-        return flag
+    
+        const result = pipeInputsDiv(divs, fn, true)
+    
+        return result
     }
-
-    const result = pipeDiv(div, fn, true)
-
-    return result
 }
 
-export function validateByIdsDiv(arrayDivs){
-    for (const div of arrayDivs) {
-        const result = validateByIdDiv(div)
-
-        if(!result) return result
-    }
-
-    return true
+export function enableInputsDiv(div, enable = true){
+    if (div instanceof Array) 
+        div.forEach(r => enableInputsDiv(r, enable))
+    else
+        pipeInputsDiv(div, r => {
+            if (enable) 
+                r.removeAttribute('disabled')
+             else 
+                r.setAttribute('disabled', 'disabled')
+        })
 }
 
-export function disableInputsDiv(div){
-    pipeDiv(div, r => r.setAttribute('disabled', 'disabled'))
-}
-
-export function pipeDiv(div, fn, returns = false){
+export function pipeInputsDiv(div, fn, returns = false){
     div = typeof(div) === typeof({}) ? div : document.getElementById(div)
     
     const inputs  = div.querySelectorAll('input, select')
