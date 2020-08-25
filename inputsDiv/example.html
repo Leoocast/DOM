@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/select2.min.css">
-    <link rel="stylesheet" href="css/select2-bootstrap.min.css">
+    <link rel="stylesheet" href="../css/select2.min.css">
+    <link rel="stylesheet" href="../css/select2-bootstrap.min.css">
 
     <!-- Bootsrap 5 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" 
@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
     integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 
-    <script src="css/select2.full.min.js"></script>
+    <script src="../css/select2.full.min.js"></script>
 
 </head>
 <body>
@@ -24,18 +24,21 @@
             <h1>Inputs div</h1>
             <div class="row text-right mb-3">
                 <div class="col">
+                    <button class=" btn btn-primary " id="btnValidarElemento">Validar Elementos</button>
                     <button class=" btn btn-primary " id="btnValidar">Validar</button>
         
                     <button class=" btn btn-primary " id="btnBloquear">Bloquear</button>
+
+                    <button class=" btn btn-primary " id="btnLimpiar">Limpiar</button>
                 </div>
             </div>
             <hr>
             <div class="row mt-5">
                 <div class="col">
-                <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                <input type="text" id="txt1" class="form-control" placeholder="First name" aria-label="First name">
                 </div>
                 <div class="col">
-                <input type="number" class="form-control" placeholder="Age" aria-label="Age">
+                <input type="number"  id="txt2" class="form-control" placeholder="Age" aria-label="Age">
                 </div>
             </div>
 
@@ -43,7 +46,7 @@
 
                 <div class="col text-left">
                     <select id="dropdown" style="width: 100%;">
-                        <option selected disabled value="0">Selecciona</option>
+                        <option selected value="0">Selecciona</option>
                         <option value="asd">Prueba</option>
                         <option value="asd">Prueba1</option>
                         <option value="asd">Prueba2</option>
