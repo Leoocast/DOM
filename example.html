@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" href="css/select2-bootstrap.min.css">
+
+    <!-- Bootsrap 5 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" 
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+    <script src="css/select2.full.min.js"></script>
+
+</head>
+<body>
+    <div class="container text-center mt-4" >
+        <div class="row" id="div1">
+            <h1>Inputs div</h1>
+            <button class="btn btn-primary float-right" id="btnValidar">Validar</button>
+            <hr>
+            <div class="row mt-5">
+                <div class="col">
+                <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                </div>
+                <div class="col">
+                <input type="number" class="form-control" placeholder="Age" aria-label="Age">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+
+                <div class="col text-left">
+                    <select id="dropdown" style="width: 100%;">
+                        <option selected disabled value="0">Selecciona</option>
+                        <option value="asd">Prueba</option>
+                        <option value="asd">Prueba1</option>
+                        <option value="asd">Prueba2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col mt-4 text-left">
+                <div class="row">
+                    <div class="form-check col">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                        Default checkbox
+                        </label>
+                    </div>
+                    <div class="form-check col">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                        Default radio
+                        </label>
+                    </div>
+                    <div class="form-file col">
+                        <input type="file" class="form-file-input" id="customFile">
+                        <label class="form-file-label" for="customFile">
+                        <span class="form-file-text">Choose file...</span>
+                        <span class="form-file-button">Browse</span>
+                        </label>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary">Primary</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="row mt-5 text-left" id="div2">
+            <div class="col">
+                <div class="form-check col">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                    Default checkbox 2
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="number" class="form-control" placeholder="Age2" aria-label="Age">
+                  </div>
+            </div>
+        </div>
+    </div>
+
+<script src="app.js" type="module"></script>
+
+<script>
+$( "#dropdown" ).select2({
+    theme: "bootstrap"
+});
+</script>
+</body>
+</html>
