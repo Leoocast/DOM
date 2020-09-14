@@ -1,19 +1,3 @@
-// export class _ {
-//     constructor(id){
-//         this.id = id
-//         this.el = document.getElementById(id)
-//     }
-
-//     show(){
-//         this.el.classList.add('animate__animated', 'animate__fadeIn')
-//     }
-
-//     hide(){
-//         // this.el.classList.remove('animate__fadeIn', 'animate__animated')
-//         this.el.classList.add('animate__animated', 'animate__fadeOut')
-//     }
-// }
-
 export function show(id){
     document.getElementById(id).classList.add('animate__animated', 'animate__fadeIn')
 }
@@ -28,45 +12,71 @@ export const slideDown = (id, duration = 2000) => {
     const target = document.getElementById(id)
 
     target.style.removeProperty('display')
+    let display = window.getComputedStyle(target).display
+    
+    if (display === 'none') 
+        display = 'block'
+    
+    target.style.display = display
 
-    const oldHeight = target.offsetHeight
+    let height = target.offsetHeight
+    target.style.height = 0
+    target.style.paddingTop = 0
+    target.style.paddingBottom = 0
+    target.style.marginTop = 0
+    target.style.marginBottom = 0
+    target.style.overflow = 'hidden'
 
-    const style = {
-        display : 'block',
-        overflow : 'hidden',
-        height : 0,
-        boxSizing : 'border-box',
-        transition : `height ${duration}ms ease`
-    }
-
-    Object.assign(target.style, style)
-
-    //No sé que hace, pero funciona
     target.offsetHeight
+    target.style.boxSizing = 'border-box'
+    target.style.transitionProperty = "height, margin, padding"
+    target.style.transitionDuration = duration + 'ms'
+    target.style.height = height + 'px'
+    target.style.removeProperty('padding-top') 
+    target.style.removeProperty('padding-bottom')
+    target.style.removeProperty('margin-top')
+    target.style.removeProperty('margin-bottom')
 
-    target.style.height = `${oldHeight}px`
+    window.setTimeout( () => {
+        target.style.removeProperty('height')
+        target.style.removeProperty('overflow')
+        target.style.removeProperty('transition-duration')
+        target.style.removeProperty('transition-property')
+      }, duration)
 }
 
 export const slideUp = (id, duration = 2000) => {
 
     const target = document.getElementById(id)
 
-    const oldHeight = target.offsetHeight
+    target.style.transitionProperty = 'height, margin, padding'
+    target.style.transitionDuration = duration + 'ms'1
+    target.style.boxSizing = 'border-box'
+    target.style.height = target.offsetHeight + 'px'
+    target.offsetHeight
+    target.style.overflow = 'hidden'
+    target.style.height = 0
+    target.style.paddingTop = 0
+    target.style.paddingBottom = 0
+    target.style.marginTop = 0
+    target.style.marginBottom = "0px!important"
+    
+    const style = target.attributes.style.value + ' margin:0!important;'
+    
+    target.setAttribute('style', style)
 
-    const style = {
-        overflow : 'hidden',
-        transition : `height ${duration}ms ease`,
-        height : `${0}px`,
-    }
-
-    Object.assign(target.style, style)
-
-    const height = target.offsetHeight
-
-    console.log(height, oldHeight)
-    setTimeout(() => {
-        target.style.display = 'none'
-        target.style.removeProperty('height')
-    }, duration + 2000000)
+    window.setTimeout( () => {
+      target.style.display = 'none'
+      target.style.removeProperty('height')
+      target.style.removeProperty('padding-top')
+      target.style.removeProperty('padding-bottom')
+      target.style.removeProperty('margin-top')
+      target.style.removeProperty('margin-bottom')
+      target.style.removeProperty('overflow')
+      target.style.removeProperty('transition-duration')
+      target.style.removeProperty('transition-property')
+ 
+    }, duration)
+      
 }
   
